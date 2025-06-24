@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chile Showcase</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --chile-bg-dark: #0f172a; /* slate-900 */
+      --chile-bg-light: #1e293b; /* slate-800 */
+      --chile-text-primary: #e2e8f0; /* slate-200 */
+      --chile-text-secondary: #94a3b8; /* slate-400 */
+      --chile-accent-blue: #38bdf8; /* sky-400 */
+      --chile-accent-green: #34d399; /* emerald-400 */
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--chile-bg-dark);
+      color: var(--chile-text-primary);
+      margin: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    .slide {
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      box-sizing: border-box;
+      text-align: center;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; /* Parallax effect for backgrounds */
+    }
+
+    .slide-content {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px 40px;
+      border-radius: 12px;
+      max-width: 800px;
+      z-index: 1;
+    }
+    
+    .slide h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--chile-accent-blue);
+    }
+
+    .slide p {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--chile-text-primary);
+    }
+    
+    @media (min-width: 768px) {
+      .slide h1 {
+        font-size: 3.5rem;
+      }
+      .slide p {
+        font-size: 1.25rem;
+      }
+    }
+
+    /* Basic scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--chile-bg-light);
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--chile-accent-blue);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #60a5fa; /* sky-500 */
+    }
+
+    #root {
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      height: 100vh;
+    }
+
+    .slide-snap {
+       scroll-snap-align: start;
+    }
+
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.1.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+    "react/": "https://esm.sh/react@^19.1.0/",
+    "react-globe.gl": "https://esm.sh/react-globe.gl@^2.30.0",
+    "three": "https://esm.sh/three@^0.164.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.6.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
