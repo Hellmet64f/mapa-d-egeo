@@ -1,117 +1,352 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chile Showcase</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root {
-      --chile-bg-dark: #0f172a; /* slate-900 */
-      --chile-bg-light: #1e293b; /* slate-800 */
-      --chile-text-primary: #e2e8f0; /* slate-200 */
-      --chile-text-secondary: #94a3b8; /* slate-400 */
-      --chile-accent-blue: #38bdf8; /* sky-400 */
-      --chile-accent-green: #34d399; /* emerald-400 */
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kernel VPN - Sua Conexão Privada e Ultra-rápida</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--chile-bg-dark);
-      color: var(--chile-text-primary);
-      margin: 0;
-      overflow-x: hidden; /* Prevent horizontal scroll */
-    }
+        /* --- Variáveis Globais de Design --- */
+        :root {
+            --bg-color: #0A0A10;
+            --primary-color: #00FF89;
+            --card-color: #16161F;
+            --text-color: #E0E0E0;
+            --text-muted: #A0A0B2;
+            --border-color: rgba(0, 255, 137, 0.2);
+            --accent-color: #4F46E5; /* Roxo para contraste */
+            --free-plan-color: #FFC107; /* Amarelo para o plano grátis */
+        }
 
-    .slide {
-      min-height: 100vh;
-      width: 100vw;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 40px;
-      box-sizing: border-box;
-      text-align: center;
-      position: relative;
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed; /* Parallax effect for backgrounds */
-    }
+        /* --- Reset e Estilos Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-color); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3 { color: var(--primary-color); }
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 60px; }
+        section { padding: 100px 0; overflow: hidden; }
 
-    .slide-content {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 20px 40px;
-      border-radius: 12px;
-      max-width: 800px;
-      z-index: 1;
-    }
-    
-    .slide h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--chile-accent-blue);
-    }
+        /* Animação de entrada para seções */
+        .animated-section { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .animated-section.visible { opacity: 1; transform: translateY(0); }
+        
+        /* --- Botão Principal (CTA) --- */
+        .cta-button { display: inline-block; padding: 14px 32px; font-size: 1rem; font-weight: 700; text-decoration: none; border-radius: 50px; transition: all 0.3s ease; }
+        .primary-cta { background-color: var(--primary-color); color: var(--bg-color); box-shadow: 0 0 20px rgba(0, 255, 137, 0.3); }
+        .primary-cta:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 0 35px rgba(0, 255, 137, 0.5); }
 
-    .slide p {
-      font-size: 1.125rem;
-      line-height: 1.7;
-      color: var(--chile-text-primary);
-    }
-    
-    @media (min-width: 768px) {
-      .slide h1 {
-        font-size: 3.5rem;
-      }
-      .slide p {
-        font-size: 1.25rem;
-      }
-    }
+        /* --- Header --- */
+        .header { position: fixed; top: 0; width: 100%; padding: 20px 0; background: rgba(10, 10, 16, 0.8); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid var(--border-color); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.8rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; margin: 0 15px; font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
+        .nav-button { background-color: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); }
+        .nav-button:hover { background-color: var(--primary-color); color: var(--bg-color); }
 
-    /* Basic scrollbar styling */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--chile-bg-light);
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: var(--chile-accent-blue);
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background-color: #60a5fa; /* sky-500 */
-    }
+        /* --- Seção Herói --- */
+        .hero { position: relative; text-align: center; padding-top: 180px; padding-bottom: 120px;
+            background-image:
+                linear-gradient(to right, rgba(0, 255, 137, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 255, 137, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px; animation: move-bg 60s linear infinite; }
+        @keyframes move-bg { from { background-position: 0 0; } to { background-position: -400px -400px; } }
+        .hero h1 span { color: var(--text-color); }
+        .hero-subtitle { font-size: 1.2rem; max-width: 650px; margin: 20px auto 40px; color: var(--text-muted); }
 
-    #root {
-      scroll-snap-type: y mandatory;
-      overflow-y: scroll;
-      height: 100vh;
-    }
+        /* --- Seção de Recursos --- */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .feature-card { background-color: var(--card-color); padding: 40px 30px; border-radius: 12px; border: 1px solid var(--border-color); transition: all 0.3s ease; }
+        .feature-card:hover { transform: translateY(-10px); border-color: var(--primary-color); }
+        .feature-icon { font-size: 3rem; margin-bottom: 20px; color: var(--primary-color); }
+        .feature-card h3 { margin-bottom: 15px; font-size: 1.5rem; color: var(--text-color); }
+        .feature-card p { color: var(--text-muted); }
+        
+        /* --- Seção de Servidores (LAYOUT EM GRID) --- */
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: -40px auto 60px;
+            color: var(--text-muted);
+        }
+        .servers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .server-card {
+            background-color: var(--card-color);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .server-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+        }
+        .server-flag {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+            line-height: 1;
+        }
+        .server-card h3 {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .server-ping {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .server-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
 
-    .slide-snap {
-       scroll-snap-align: start;
-    }
+        /* --- Seção de Preços --- */
+        .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; align-items: end;}
+        .pricing-card {
+            background-color: var(--card-color); padding: 30px;
+            border-radius: 12px; border: 2px solid var(--border-color);
+            text-align: center; transition: all 0.3s ease; position: relative;
+            display: flex; flex-direction: column; height: 100%;
+        }
+        .pricing-card:hover { transform: scale(1.05); }
+        
+        .pricing-card.popular {
+            border-color: var(--accent-color);
+            transform: scale(1.05);
+            padding-top: 50px; /* Espaço extra para o badge */
+        }
+        .popular-badge {
+            position: absolute; top: -15px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-color); color: var(--text-color);
+            padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: 700;
+        }
+        .pricing-card.free { border-color: var(--free-plan-color); }
 
-  </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.1.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
-    "react/": "https://esm.sh/react@^19.1.0/",
-    "react-globe.gl": "https://esm.sh/react-globe.gl@^2.30.0",
-    "three": "https://esm.sh/three@^0.164.0",
-    "@google/genai": "https://esm.sh/@google/genai@^1.6.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
+        .pricing-card h3 { font-size: 1.3rem; color: var(--text-color); }
+        .pricing-card.free h3 { color: var(--free-plan-color); }
+        .price { font-size: 3rem; color: var(--primary-color); font-weight: 700; margin: 15px 0; }
+        .price span { font-size: 1rem; color: var(--text-muted); }
+        .features-list { list-style: none; margin: 30px 0; color: var(--text-muted); text-align: left; flex-grow: 1; }
+        .features-list li { margin-bottom: 15px; position: relative; padding-left: 25px; }
+        .features-list li::before { content: '✔'; color: var(--primary-color); position: absolute; left: 0; }
+
+        /* --- Seção de FAQ e Rodapé --- */
+        .faq-accordion { max-width: 800px; margin: 0 auto; }
+        .faq-item { background-color: var(--card-color); margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border-color); }
+        .faq-question { padding: 20px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-arrow { transition: transform 0.3s ease; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 20px; color: var(--text-muted); }
+        .faq-answer p { padding-bottom: 20px; }
+        .faq-item.active .faq-arrow { transform: rotate(180deg); }
+        .footer { background: var(--card-color); padding: 50px 0; text-align: center; border-top: 1px solid var(--border-color); }
+        .footer p { color: var(--text-muted); }
+
+        /* --- Responsividade --- */
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-card { margin-bottom: 30px; }
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2rem; }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-<script type="module" src="/index.tsx"></script>
+
+    <header class="header">
+        <nav class="container navbar">
+            <a href="#" class="logo">KERNEL</a>
+            <div class="nav-links">
+                <a href="#features">Recursos</a>
+                <a href="#servers">Servidores</a>
+                <a href="#pricing">Preços</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <a href="https://www.mediafire.com/file/vanecg4ouqgb01c/1648_KernelVPN.apk/file" target="_blank" rel="noopener noreferrer" class="cta-button nav-button">Começar Agora</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Seção Herói -->
+        <section class="hero animated-section" id="home">
+            <div class="container">
+                <h1>Ping Baixo, <span>Segurança Máxima.</span></h1>
+                <p class="hero-subtitle">Nossa tecnologia de rota inteligente encontra o caminho mais rápido para os servidores de jogos, enquanto criptografia de ponta protege seus dados. A experiência de jogo definitiva.</p>
+                <a href="https://www.mediafire.com/file/vanecg4ouqgb01c/1648_KernelVPN.apk/file" target="_blank" rel="noopener noreferrer" class="cta-button primary-cta">Obter Kernel VPN</a>
+            </div>
+        </section>
+
+        <!-- Seção de Recursos -->
+        <section class="animated-section" id="features">
+            <div class="container">
+                <h2>Por que Kernel VPN?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡️</div><h3>Ping Ultrabaixo</h3><p>Nosso algoritmo proprietário de 2 minutos calibra a rota perfeita, reduzindo a latência drasticamente.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div><h3>Segurança de Nível Militar</h3><p>Criptografia AES-256 para manter sua conexão e seus dados completamente anônimos e seguros.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💻</div><h3>Suporte Multiplataforma</h3><p>Use em seu PC, celular, tablet ou console. Uma conta para proteger todos os seus dispositivos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção de Servidores (Layout em Grid) -->
+        <section class="animated-section" id="servers">
+            <div class="container">
+                <h2>Nossa Rede Global de Servidores</h2>
+                <p class="section-subtitle">Conecte-se a servidores de alta performance ao redor do mundo, estrategicamente posicionados para garantir a menor latência possível, onde quer que você jogue.</p>
+                <div class="servers-grid">
+                    <div class="server-card">
+                        <span class="server-flag">🇧🇷</span>
+                        <h3>Brasil</h3>
+                        <p class="server-ping">Ping a partir de 22ms</p>
+                        <p class="server-desc">Ideal para jogadores na América do Sul.</p>
+                    </div>
+                     <div class="server-card">
+                        <span class="server-flag">🇺🇸</span>
+                        <h3>Estados Unidos</h3>
+                        <p class="server-ping">Ping a partir de 89ms</p>
+                        <p class="server-desc">Cobertura total da América do Norte.</p>
+                    </div>
+                     <div class="server-card">
+                        <span class="server-flag">🇩🇪</span>
+                        <h3>Alemanha</h3>
+                        <p class="server-ping">Ping a partir de 121ms</p>
+                        <p class="server-desc">Conexão central para toda a Europa.</p>
+                    </div>
+                     <div class="server-card">
+                        <span class="server-flag">🇯🇵</span>
+                        <h3>Japão</h3>
+                        <p class="server-ping">Ping a partir de 210ms</p>
+                        <p class="server-desc">Acesso rápido aos servidores asiáticos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Preços -->
+        <section class="animated-section" id="pricing">
+            <div class="container">
+                <h2>Planos Simples e Transparentes</h2>
+                <div class="pricing-grid">
+                    <div class="pricing-card free">
+                        <h3>Plano Grátis</h3>
+                        <div class="price">R$0</div>
+                        <ul class="features-list">
+                            <li>1 Conexão Simultânea</li>
+                            <li>Acesso ao Servidor Brasil</li>
+                            <li>Largura de Banda Limitada</li>
+                            <li>Criptografia Básica</li>
+                        </ul>
+                        <a href="https://www.mediafire.com/file/vanecg4ouqgb01c/1648_KernelVPN.apk/file" target="_blank" rel="noopener noreferrer" class="cta-button" style="border-color: var(--free-plan-color); color: var(--free-plan-color);">BAIXAR APK GRÁTIS</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Mensal</h3>
+                        <div class="price">R$19<span>/mês</span></div>
+                        <ul class="features-list">
+                            <li>5 Conexões Simultâneas</li>
+                            <li>Todos os Servidores</li>
+                            <li>Largura de Banda Ilimitada</li>
+                            <li>Suporte Prioritário 24/7</li>
+                        </ul>
+                        <a href="#" class="cta-button nav-button">Escolher Plano</a>
+                    </div>
+                    <div class="pricing-card popular">
+                        <div class="popular-badge">Mais Popular</div>
+                        <h3>Anual</h3>
+                        <div class="price">R$9<span>/mês</span></div>
+                        <ul class="features-list">
+                            <li>5 Conexões Simultâneas</li>
+                            <li>Todos os Servidores</li>
+                            <li>Largura de Banda Ilimitada</li>
+                            <li>Suporte Prioritário 24/7</li>
+                        </ul>
+                        <a href="#" class="cta-button primary-cta" style="background-color: var(--accent-color); box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);">Economize 52%</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Semestral</h3>
+                        <div class="price">R$12<span>/mês</span></div>
+                        <ul class="features-list">
+                            <li>5 Conexões Simultâneas</li>
+                            <li>Todos os Servidores</li>
+                            <li>Largura de Banda Ilimitada</li>
+                            <li>Suporte Prioritário 24/7</li>
+                        </ul>
+                        <a href="#" class="cta-button nav-button">Escolher Plano</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de FAQ -->
+        <section class="animated-section" id="faq">
+            <div class="container">
+                <h2>Perguntas Frequentes</h2>
+                <div class="faq-accordion">
+                     <div class="faq-item">
+                        <div class="faq-question">Como uma VPN realmente melhora o meu ping?<span class="faq-arrow">▼</span></div>
+                        <div class="faq-answer"><p>Encontrando a rota mais direta e menos congested entre seu dispositivo e o servidor do jogo. Eliminamos desvios desnecessários que seu provedor de internet pode criar, resultando em menor latência.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">A Kernel VPN é segura?<span class="faq-arrow">▼</span></div>
+                        <div class="faq-answer"><p>Sim. Usamos criptografia AES-256, o mesmo padrão utilizado por bancos e governos, para garantir que sua conexão seja impenetrável. Além disso, temos uma política de zero registros (no-logs).</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Posso usar em mais de um dispositivo?<span class="faq-arrow">▼</span></div>
+                        <div class="faq-answer"><p>Sim! Nossos planos pagos permitem conectar até 5 dispositivos simultaneamente com uma única assinatura. O plano gratuito permite 1 conexão.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Kernel VPN. Todos os direitos reservados. Feito para gamers que exigem o melhor.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animação de scroll
+            const sections = document.querySelectorAll('.animated-section');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+            }, { threshold: 0.1 });
+            sections.forEach(section => observer.observe(section));
+
+            // FAQ Accordion
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                item.querySelector('.faq-question').addEventListener('click', () => {
+                    const currentlyActive = document.querySelector('.faq-item.active');
+                    if (currentlyActive && currentlyActive !== item) {
+                        currentlyActive.classList.remove('active');
+                        currentlyActive.querySelector('.faq-answer').style.maxHeight = 0;
+                    }
+                    item.classList.toggle('active');
+                    const answer = item.querySelector('.faq-answer');
+                    answer.style.maxHeight = item.classList.contains('active') ? answer.scrollHeight + 'px' : 0;
+                });
+            });
+        });
+    </script>
 </body>
-</html>
+                      </html>
